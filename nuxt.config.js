@@ -56,6 +56,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
   ],
   /*
   ** vuetify module configuration
@@ -77,6 +79,9 @@ export default {
         }
       }
     }
+  },
+  axios: {
+    baseURL: "https://stop-covid19-hyogo.github.io/covid19-scraping/"
   },
   /*
   ** Build configuration
