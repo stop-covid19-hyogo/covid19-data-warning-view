@@ -32,7 +32,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: generate
         run: |
-          yarn run generate --fail-on-page-error
+          yarn run generate:gh-pages --fail-on-page-error
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
