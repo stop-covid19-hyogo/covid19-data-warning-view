@@ -1,16 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
 
-const routerBase =
-  process.env.DEPLOY_ENV === 'GH_PAGES'
-    ? {
-        router: {
-          base: '/covid19-opendata-warning-view/'
-        }
-      }
-    : {
-        router: {}
-    }
-
 export default {
   /*
   ** Nuxt rendering mode
@@ -36,6 +25,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: '//polyfill.io/v3/polyfill.min.js?features=fetch' }
     ]
   },
   /*
@@ -67,8 +59,6 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
   ],
   /*
   ** vuetify module configuration
@@ -91,14 +81,10 @@ export default {
       }
     }
   },
-  axios: {
-    baseURL: "https://stop-covid19-hyogo.github.io/covid19-scraping/"
-  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
   },
-  ...routerBase
 }

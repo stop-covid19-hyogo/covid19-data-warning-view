@@ -36,15 +36,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ExpansionPanel from  '@/components/ExpansionPanel.vue'
-import WarningCard from '@/components/WarningCard.vue'
 import { dataType, extractDataByFixed, extractDataByFile } from '@/utils/dataTypes'
 
 export default Vue.extend({
-  components: {
-    ExpansionPanel,
-    WarningCard
-  },
   data() {
     const fixedWarnings: dataType[] = []
     return {
@@ -71,12 +65,11 @@ export default Vue.extend({
     this.getWarningsFromAPI()
   },
   methods: {
-    async getWarningsFromAPI() {
-      await this.$axios
-        .$get('/open_data_warnings.json')
-        .then((response: dataType[]) => {
-          this.fixedWarnings = extractDataByFixed(response)
-          const notFixedWarnings = extractDataByFixed(response, false)
+    getWarningsFromAPI() {
+      fetch('https://stop-covid19-hyogo.github.io/covid19-scraping/open_data_warnings.json').then(response => response.json())
+        .then((responseJson: dataType[]) => {
+          this.fixedWarnings = extractDataByFixed(responseJson)
+          const notFixedWarnings = extractDataByFixed(responseJson, false)
           this.notFixedItems.forEach((d, i) => {
             d.warnings = extractDataByFile(notFixedWarnings, this.files[i])
           })
